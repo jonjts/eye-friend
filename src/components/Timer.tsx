@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import { useState, useEffect, useCallback } from "react";
-import { useVibrate } from "@/hooks/useVibrate";
+import { useState, useEffect, useCallback } from 'react';
+import { useVibrate } from '@/hooks/useVibrate';
 
 const WORK_TIME = 20 * 60; // 20 minutes in seconds
 const BREAK_TIME = 20; // 20 seconds
@@ -15,9 +15,7 @@ export default function Timer() {
   const formatTime = (seconds: number) => {
     const minutes = Math.floor(seconds / 60);
     const remainingSeconds = seconds % 60;
-    return `${minutes.toString().padStart(2, "0")}:${remainingSeconds
-      .toString()
-      .padStart(2, "0")}`;
+    return `${minutes.toString().padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')}`;
   };
 
   const requestNotificationPermission = useCallback(async () => {
@@ -26,10 +24,7 @@ export default function Timer() {
       return;
     }
 
-    if (
-      Notification.permission !== "granted" &&
-      Notification.permission !== "denied"
-    ) {
+    if (Notification.permission !== "granted" && Notification.permission !== "denied") {
       const permission = await Notification.requestPermission();
       if (permission === "granted") {
         console.log("Permissão para notificações concedida!");
@@ -47,7 +42,7 @@ export default function Timer() {
         body: "Hora de fazer uma pausa! Olhe para algo distante por 20 segundos.",
         icon: "/icon-192x192.svg",
         badge: "/icon-192x192.svg",
-        tag: "eye-friend-notification",
+        tag: "eye-friend-notification"
       });
     }
   }, []);
@@ -77,6 +72,10 @@ export default function Timer() {
     return () => clearInterval(interval);
   }, [isRunning, timeLeft, handleTimerComplete]);
 
+  const handleStart = () => {
+    setIsRunning(true);
+  };
+
   const handlePause = () => {
     setIsRunning(false);
   };
@@ -90,26 +89,24 @@ export default function Timer() {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-900 text-white p-4">
       <div className="text-center">
-        <h1
-          className="text-4xl font-bold mb-8 cursor-help inline-block"
+        <h1 
+          className="text-4xl font-bold mb-8 cursor-help inline-block" 
           title="A cada 20 minutos olhando para a tela, faça uma pausa de 20 segundos olhando para algo distante (cerca de 6 metros)."
         >
           Eye Friend
         </h1>
         <div className="text-8xl font-mono mb-8">{formatTime(timeLeft)}</div>
-
+        
         {isBreak && (
           <div className="mb-8 p-4 bg-blue-600 rounded-lg">
-            <p className="text-xl">
-              Look at something 20 feet away for 20 seconds!
-            </p>
+            <p className="text-xl">Look at something 20 feet away for 20 seconds!</p>
           </div>
         )}
 
         <div className="space-x-4">
           {!isRunning ? (
             <button
-              onClick={showNotification}
+              onClick={handleStart}
               className="px-6 py-3 bg-green-600 rounded-lg hover:bg-green-700 transition-colors cursor-pointer"
             >
               Start
@@ -132,4 +129,4 @@ export default function Timer() {
       </div>
     </div>
   );
-}
+} 
