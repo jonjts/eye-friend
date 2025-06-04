@@ -18,6 +18,15 @@ export const metadata: Metadata = {
   manifest: "/manifest.json",
   themeColor: "#111827",
   viewport: "width=device-width, initial-scale=1, maximum-scale=1",
+  icons: {
+    icon: [
+      { url: '/icon-192x192.svg' },
+      { url: '/icon-512x512.svg', sizes: '512x512' }
+    ],
+    apple: [
+      { url: '/icon-192x192.svg' }
+    ]
+  },
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",
