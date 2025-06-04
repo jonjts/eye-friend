@@ -66,7 +66,12 @@ export default function Timer() {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-900 text-white p-4">
       <div className="text-center">
-        <h1 className="text-4xl font-bold mb-8">Eye Friend</h1>
+        <h1 
+          className="text-4xl font-bold mb-8 cursor-help inline-block" 
+          title="A cada 20 minutos olhando para a tela, faça uma pausa de 20 segundos olhando para algo distante (cerca de 6 metros)."
+        >
+          Eye Friend
+        </h1>
         <div className="text-8xl font-mono mb-8">{formatTime(timeLeft)}</div>
         
         {isBreak && (
@@ -79,21 +84,21 @@ export default function Timer() {
           {!isRunning ? (
             <button
               onClick={handleStart}
-              className="px-6 py-3 bg-green-600 rounded-lg hover:bg-green-700 transition-colors"
+              className="px-6 py-3 bg-green-600 rounded-lg hover:bg-green-700 transition-colors cursor-pointer"
             >
               Start
             </button>
           ) : (
             <button
               onClick={handlePause}
-              className="px-6 py-3 bg-yellow-600 rounded-lg hover:bg-yellow-700 transition-colors"
+              className="px-6 py-3 bg-yellow-600 rounded-lg hover:bg-yellow-700 transition-colors cursor-pointer"
             >
               Pause
             </button>
           )}
           <button
             onClick={handleReset}
-            className="px-6 py-3 bg-red-600 rounded-lg hover:bg-red-700 transition-colors"
+            className="px-6 py-3 bg-red-600 rounded-lg hover:bg-red-700 transition-colors cursor-pointer"
           >
             Reset
           </button>
