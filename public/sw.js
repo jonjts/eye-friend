@@ -3,8 +3,7 @@ self.addEventListener('install', (event) => {
     caches.open('eye-friend-v1').then((cache) => {
       return cache.addAll([
         '/',
-        '/manifest.json',
-        '/notification.mp3'
+        '/manifest.json'
       ]);
     })
   );

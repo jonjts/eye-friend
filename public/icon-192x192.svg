@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="192" height="192" viewBox="0 0 192 192" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background circle -->
+  <circle cx="96" cy="96" r="96" fill="#111827"/>
+  
+  <!-- Eye shape -->
+  <path d="M96 48C64 48 36 72 24 96C36 120 64 144 96 144C128 144 156 120 168 96C156 72 128 48 96 48Z" fill="#4F46E5"/>
+  
+  <!-- Pupil -->
+  <circle cx="96" cy="96" r="24" fill="#111827"/>
+  
+  <!-- Highlight -->
+  <circle cx="84" cy="84" r="8" fill="white" fill-opacity="0.5"/>
+</svg> 

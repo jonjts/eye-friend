@@ -18,18 +18,41 @@ export default function Timer() {
     return `${minutes.toString().padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')}`;
   };
 
-  const playNotificationSound = useCallback(() => {
-    const audio = new Audio('/notification.mp3');
-    audio.volume = 0.3;
-    audio.play();
+  const requestNotificationPermission = useCallback(async () => {
+    if (!("Notification" in window)) {
+      console.log("Este navegador não suporta notificações desktop");
+      return;
+    }
+
+    if (Notification.permission !== "granted" && Notification.permission !== "denied") {
+      const permission = await Notification.requestPermission();
+      if (permission === "granted") {
+        console.log("Permissão para notificações concedida!");
+      }
+    }
+  }, []);
+
+  useEffect(() => {
+    requestNotificationPermission();
+  }, [requestNotificationPermission]);
+
+  const showNotification = useCallback(() => {
+    if (Notification.permission === "granted") {
+      new Notification("Eye Friend", {
+        body: "Hora de fazer uma pausa! Olhe para algo distante por 20 segundos.",
+        icon: "/icon-192x192.svg",
+        badge: "/icon-192x192.svg",
+        tag: "eye-friend-notification"
+      });
+    }
   }, []);
 
   const handleTimerComplete = useCallback(() => {
-    playNotificationSound();
+    showNotification();
     vibrate([200]);
     setIsBreak(true);
     setTimeLeft(BREAK_TIME);
-  }, [playNotificationSound, vibrate]);
+  }, [showNotification, vibrate]);
 
   useEffect(() => {
     let interval: NodeJS.Timeout;
