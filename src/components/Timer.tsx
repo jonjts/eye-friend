@@ -106,7 +106,7 @@ export default function Timer() {
         <div className="space-x-4">
           {!isRunning ? (
             <button
-              onClick={handleStart}
+              onClick={showNotification}
               className="px-6 py-3 bg-green-600 rounded-lg hover:bg-green-700 transition-colors cursor-pointer"
             >
               Start
